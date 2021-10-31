@@ -1,0 +1,24 @@
+{
+    "name": "fast-service/fast-simotel-service",
+    "description": "the project for fast service in simotel",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "FastSimotelService\\": "src/",
+            "App\\": "src/app"
+        },
+        "files": [
+            "src/app/Helpers/General.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Saeed Mashmoli",
+            "email": "saeedmashmoli1416@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "vlucas/phpdotenv": "^5.3"
+    }
+}
