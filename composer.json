@@ -1,10 +1,10 @@
 {
-    "name": "fast-service/fast-simotel-service",
+    "name": "novin-tarh-pars/send-voice-message",
     "description": "the project for fast service in simotel",
     "type": "library",
     "autoload": {
         "psr-4": {
-            "FastSimotelService\\": "src/",
+            "NovinTarhPars\\": "src/",
             "App\\": "src/app"
         },
         "files": [
