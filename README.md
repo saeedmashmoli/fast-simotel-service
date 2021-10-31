@@ -29,8 +29,7 @@ API_PASSWORD=<YourSimotelApiPassword>      //show or create in simotel admin pan
 require_once './vendor/autoload.php';
 use FastSimotelService\FastSimotelService;
 
-FastSimotelService::run_fast_campaign();
+FastSimotelService::run_fast_campaign(string $filename,array $numbers,File $file);
 ```
-3. Send post request to your controller that use FastSimotelService
  
  
