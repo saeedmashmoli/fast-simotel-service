@@ -11,12 +11,12 @@ this library created for fast simotel services
 ## Usage
 
 1.Create and set enviroment variable `.env` file
-   ```sh
-        API_BASE_URL=<YourSimotelApiUrl> /*example https://0.0.0.0/api/v3/autodialer/*/
-        API_KEY=<YourSimotelApiToken> //show or create in simotel admin panel maintenance -> api accounts 
-        API_USERNAME=<YourSimotelApiUsername> //show or create in simotel admin panel maintenance -> api accounts
-        API_PASSWORD=<YourSimotelApiPassword> //show or create in simotel admin panel maintenance -> api accounts
-   ```
+```sh
+API_BASE_URL=<YourSimotelApiUrl>           //example https://0.0.0.0/api/v3/autodialer/
+API_KEY=<YourSimotelApiToken>              //show or create in simotel admin panel maintenance -> api accounts 
+API_USERNAME=<YourSimotelApiUsername>      //show or create in simotel admin panel maintenance -> api accounts
+API_PASSWORD=<YourSimotelApiPassword>      //show or create in simotel admin panel maintenance -> api accounts
+```
 
 2.Use Class FastSimotelService in your controller
    ```sh
