@@ -6,6 +6,11 @@
 ## About The Project
 this library created for fast simotel services
 
+## Install Library
+```sh
+composer require fast-service/fast-simotel-service
+```
+
 
 
 ## Usage
@@ -19,13 +24,13 @@ API_PASSWORD=<YourSimotelApiPassword>      //show or create in simotel admin pan
 ```
 
 2.Use Class FastSimotelService in your controller
-   ```sh
-    <?php
-    require_once './vendor/autoload.php';
-    use FastSimotelService\FastSimotelService;
+```sh
+<?php
+require_once './vendor/autoload.php';
+use FastSimotelService\FastSimotelService;
 
-    FastSimotelService::run_fast_campaign();
-   ```
+FastSimotelService::run_fast_campaign();
+```
 3. Send post request to your controller that use FastSimotelService
  
  
