@@ -1,0 +1,69 @@
+#!/bin/sh
+
+line=$(ps -C php -f | grep /var/lib/asterisk/ami-service/service.php)
+IFS=', ' read -r -a array <<< "$line"
+kill 9 ${array[1]}
+nohup php /var/lib/asterisk/ami-service/service.php </dev/null &>/dev/null &
+
+
+
+<?php
+
+require_once '/var/lib/asterisk/agi-bin/phpagi-asmanager.php';
+date_default_timezone_set('Asia/Tehran');
+$server = "127.0.0.1";
+$username = "Crm_Admin";
+$password = "ITB@Crm";
+$reconnect = TRUE;
+
+$manager = new AGI_AsteriskManager();
+
+$conn = $manager->connect($server,$username,$password);
+if (!$conn) {
+    $date_receive = date("[Y-m-d H:i:s] ");
+    echo($date_receive);
+    echo "Cann't connect to manager\n";
+} else {
+    $date_receive = date("[Y-m-d H:i:s] ");
+    echo($date_receive);
+    echo "Connected to manager\n";
+}
+
+
+$res = $manager->add_event_handler('dial','sendDial'); 
+$res = $manager->add_event_handler('cdr','sendCdr'); 
+$response = $manager->wait_response(TRUE);
+while (!$response) {
+	if ($reconnect) {
+		sleep(1);
+		$conn = $manager->connect($server,$username,$password);
+		while (!$conn) {
+			sleep(1);
+			$conn = $manager->connect($server,$username,$password);
+		}
+		$response = $manager->wait_response(TRUE);
+	} else {
+		exit();
+	}
+}
+function sendDial($event,$data) {
+	if($data['SubEvent'] === 'Begin'){
+		curlRequest("POST","dialBegin",$data);
+	}else{
+		curlRequest("POST","dialEnd",$data);
+	}	
+} 
+function sendCdr($event,$data){
+	curlRequest("POST","dialBegin",$data);
+}
+function curlRequest($method,$path,$data){
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, "http://192.168.4.133");
+	curl_setopt($ch, CURLOPT_HTTPHEADER, []);
+	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method); 
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	$output = curl_exec($ch);
+	curl_close($ch);
+	return $output;
+}
